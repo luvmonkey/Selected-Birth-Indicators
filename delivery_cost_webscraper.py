@@ -33,17 +33,29 @@ def create_cost_dictionary_for_a_state(counter):
 
     state_name = driver.find_element(By.XPATH, ("/html/body/section/section/section/section[3]/section/div/article/section[1]/div/section/div/div/div[" + num_for_xpath + "]/div/div[1]/h2")).text
     state_dictionary['state_name'] = state_name
-    print(state_name)
 
+    vaginal_birth_with_insurance = driver.find_element(By.XPATH, ("/html/body/section/section/section/section[3]/section/div/article/section[1]/div/section/div/div/div[" + num_for_xpath + "]/div/p[2]/text()[1]")).text
+    state_dictionary['vaginal_birth_with_insurance'] = vaginal_birth_with_insurance
+
+    vaginal_birth_without_insurance = driver.find_element(By.XPATH, ("/html/body/section/section/section/section[3]/section/div/article/section[1]/div/section/div/div/div[" + num_for_xpath + "]/div/p[2]/text()[2]")).text
+    state_dictionary['vaginal_birth_without_insurance'] = vaginal_birth_without_insurance 
+
+    cesarean_with_insurance = driver.find_element(By.XPATH, ("/html/body/section/section/section/section[3]/section/div/article/section[1]/div/section/div/div/div[" + num_for_xpath + "]/div/p[3]/text()[1]")).text
+    state_dictionary['cesarean_with_insurance'] = cesarean_with_insurance
+
+    cesarean_without_insurance = driver.find_element(By.XPATH, ("/html/body/section/section/section/section[3]/section/div/article/section[1]/div/section/div/div/div[" + num_for_xpath + "]/div/p[3]/text()[2]")).text
+    state_dictionary['cesarean_without_insurance'] = cesarean_without_insurance
+
+    return state_dictionary
 
 
 # Open Window to website
 driver.get('https://www.businessinsider.com/how-much-does-it-cost-to-have-a-baby-2018-4#alabama-1')
 time.sleep(3)
 
-create_cost_dictionary_for_a_state(1)
-create_cost_dictionary_for_a_state(2)
-create_cost_dictionary_for_a_state(3)
+print(create_cost_dictionary_for_a_state(1))
+print(create_cost_dictionary_for_a_state(2))
+print(create_cost_dictionary_for_a_state(3))
 
 # Close window
 driver.close()
