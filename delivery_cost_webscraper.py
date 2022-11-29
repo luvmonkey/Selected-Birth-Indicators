@@ -53,10 +53,25 @@ def create_cost_dictionary_for_a_state(counter):
 driver.get('https://www.businessinsider.com/how-much-does-it-cost-to-have-a-baby-2018-4#alabama-1')
 time.sleep(3)
 
-print(create_cost_dictionary_for_a_state(1))
-print(create_cost_dictionary_for_a_state(2))
-print(create_cost_dictionary_for_a_state(3))
+#Create a dictionary to hold all the data
+cost_dictionary_by_state = {}
+
+for i in range (1, 51):
+    cost_dictionary_by_state[i] = create_cost_dictionary_for_a_state(i)
 
 # Close window
 driver.close()
+
+# Saves data as a csv file
+with open('cost_of_births_by_state_2019.csv', 'w') as birth_costs:
+    wr = csv.DictWriter(birth_costs, fieldnames=[
+        'state_name', 
+        'vaginal_birth_with_insurance', 
+        'vaginal_birth_without_insurance', 
+        'cesarean_with_insurance', 
+        'cesarean_without_insurance'])
+    wr.writeheader
+    for num in range(1, 51):
+        wr.writerow(cost_dictionary_by_state[num])
+
 
