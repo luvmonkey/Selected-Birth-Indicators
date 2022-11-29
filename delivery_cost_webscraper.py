@@ -62,15 +62,17 @@ for i in range (1, 51):
 # Close window
 driver.close()
 
-# Saves data as a csv file
-with open('cost_of_births_by_state_2019.csv', 'w') as birth_costs:
-    wr = csv.DictWriter(birth_costs, fieldnames=[
+field_names = [
         'state_name', 
         'vaginal_birth_with_insurance', 
         'vaginal_birth_without_insurance', 
         'cesarean_with_insurance', 
-        'cesarean_without_insurance'])
-    wr.writeheader
+        'cesarean_without_insurance']
+
+# Saves data as a csv file
+with open('cost_of_births_by_state_2019.csv', 'w') as birth_costs:
+    wr = csv.DictWriter(birth_costs, fieldnames=field_names)
+    wr.writeheader()
     for num in range(1, 51):
         wr.writerow(cost_dictionary_by_state[num])
 
